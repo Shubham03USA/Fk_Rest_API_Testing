@@ -1,0 +1,292 @@
+{
+  "info": {
+    "_postman_id": "4fcd3cc1-fced-43be-9354-c27fc595f925",
+    "name": "FakeRestAPI_Activities",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "24301049",
+    "_collection_link": "https://go.postman.co/collection/24301049-4fcd3cc1-fced-43be-9354-c27fc595f925?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GetDetail_Activities",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "text/plain; v=1.0"
+          }
+        ],
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Activities"
+          ]
+        },
+        "description": "Generated from cURL: curl -X GET \"https://fakerestapi.azurewebsites.net/api/v1/Activities\" -H  \"accept: text/plain; v=1.0\""
+      },
+      "response": []
+    },
+    {
+      "name": "AddNewActivities",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "//create variable for random number and string\r",
+              " const randomnum = Math.floor(Math.random()*100+1);\r",
+              " var randomstr = \"sau\"+Math.random().toString(20).substring(2);\r",
+              "\r",
+              "// creaating variable at environment level and collection level\r",
+              "pm.collectionVariables.set(\"id\", randomnum);\r",
+              "pm.collectionVariables.set(\"title\", randomstr);\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "text/plain; v=1.0"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json; v=1.0"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": {{id}},\r\n    \"title\": \"{{title}}\",\r\n    \"dueDate\": \"2025-10-20T14:37:32.633Z\",\r\n    \"completed\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Activities"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://fakerestapi.azurewebsites.net/api/v1/Activities\" -H  \"accept: text/plain; v=1.0\" -H  \"Content-Type: application/json; v=1.0\" -d \"{\\\"id\\\":0,\\\"title\\\":\\\"ABS\\\",\\\"dueDate\\\":\\\"2025-10-20T14:37:32.633Z\\\",\\\"completed\\\":true}\""
+      },
+      "response": []
+    },
+    {
+      "name": "GetSingleDetail",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities/{{id}}",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Activities",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "EditActivities",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "var randomstr = \"sau\"+Math.random().toString(20).substring(2);\r",
+              "pm.collectionVariables.set(\"title\", randomstr);\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": {{id}},\r\n    \"title\": \"{{title}}\",\r\n    \"dueDate\": \"2025-10-20T14:37:32.633Z\",\r\n    \"completed\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities/{{id}}",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Activities",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DeleteIdActivities",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.collectionVariables.unset(\"id\");\r",
+              "pm.collectionVariables.unset(\"title\");\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities/{{id}}",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Activities",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
